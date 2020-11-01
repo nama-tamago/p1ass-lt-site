@@ -1,0 +1,7 @@
+{
+  "plugins": ["stylelint-order"],
+  "extends": ["stylelint-config-recommended", "stylelint-config-recess-order"],
+	"rules": {
+  },
+  "ignoreFiles": ["**/node_modules/**", ".next/**"]
+}
