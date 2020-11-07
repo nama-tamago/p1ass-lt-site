@@ -18,10 +18,18 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'import',
   ],
   rules: {
     'react/jsx-filename-extension': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'object-curly-newline': 'off',
+    'no-undef': 'off',
+    'import/prefer-default-export': 'off',
+    'react/prop-types': 'off',
+    'import/extensions': 'off',
+    'no-param-reassign': 'off',
+    'import/no-unresolved': 'off',
   },
 };
