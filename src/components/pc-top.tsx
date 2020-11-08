@@ -71,7 +71,7 @@ const Rig = () => {
 };
 
 const P1assImage = () => {
-  const texture = useLoader(THREE.TextureLoader, '/p1ass-lt-site/p1ass-image.png');
+  const texture = useLoader(THREE.TextureLoader, `${process.env.basePath}/p1ass-image.png`);
   return (
     <mesh receiveShadow>
       <planeBufferGeometry attach="geometry" args={[44, 18]} />
@@ -81,7 +81,7 @@ const P1assImage = () => {
 };
 
 const PeopleImage = ({ position, width, height, scale }) => {
-  const texture = useLoader(THREE.TextureLoader, '/p1ass-lt-site/people.png');
+  const texture = useLoader(THREE.TextureLoader, `${process.env.basePath}/people.png`);
   const ref = useRef<{position: {y: number}}>();
   const { clock } = useThree();
   useFrame(() => {
@@ -98,7 +98,7 @@ const PeopleImage = ({ position, width, height, scale }) => {
 };
 
 const DecorationImage = () => {
-  const texture = useLoader(THREE.TextureLoader, '/p1ass-lt-site/decoration.png');
+  const texture = useLoader(THREE.TextureLoader, `${process.env.basePath}/decoration.png`);
   return (
     <mesh position={[0, 0, -2]} receiveShadow>
       <planeBufferGeometry attach="geometry" args={[44, 18]} />
@@ -108,7 +108,7 @@ const DecorationImage = () => {
 };
 
 const P1assLTTextImage = () => {
-  const texture = useLoader(THREE.TextureLoader, '/p1ass-lt-site/p1ass-lt-text.png');
+  const texture = useLoader(THREE.TextureLoader, `${process.env.basePath}/p1ass-lt-text.png`);
   return (
     <sprite position={[0, 8, -3]} receiveShadow castShadow>
       <planeBufferGeometry attach="geometry" args={[30, 10]} />
@@ -155,11 +155,11 @@ export const PCTop: React.FC = () => (
           <DecorationImage />
           <P1assLTTextImage />
           <PeopleImage position={[0, -2.5, 1]} width={44} height={18} scale={1.5} />
-          <PeopleImage position={[-1, -2.5, 1.5]} width={44} height={18} scale={2.3} />
+          <PeopleImage position={[-1, -2.5, 2]} width={44} height={18} scale={2.3} />
           <PeopleImage position={[1, -3, 3]} width={44} height={18} scale={1.6} />
           <PeopleImage position={[-1, -2.5, 4.5]} width={44} height={18} scale={2.7} />
           <PeopleImage position={[1, -2.5, 7]} width={44} height={18} scale={1.4} />
-          <PeopleImage position={[1, -2.5, 9]} width={33} height={13.5} scale={1.9} />
+          <PeopleImage position={[0, -2.5, 9]} width={33} height={13.5} scale={1.9} />
         </Suspense>
         <Rig />
       </Canvas>

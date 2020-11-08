@@ -6,6 +6,11 @@ sitemap({
   targetDirectory: 'public/',
 });
 
+const basePath = process.env.NODE_ENV === 'production' ? '/p1ass-lt-site' : '';
+
 module.exports = withOffline({
-  basePath: process.env.NODE_ENV === 'production' ? '/p1ass-lt-site' : '',
+  basePath,
+  env: {
+    basePath,
+  },
 });
