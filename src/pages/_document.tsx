@@ -7,11 +7,11 @@ interface CustomDocumentInterface {
 }
 
 class CustomDocument extends Document implements CustomDocumentInterface {
-  url = 'https://nama-tamago.github.io/p1ass-lt';
+  url = 'https://nama-tamago.github.io/p1ass-lt-site';
 
-  title = '';
+  title = 'p1ass LT';
 
-  description = '';
+  description = 'p1assくんの誕生日を祝うLT会の特設サイトです 🎉';
 
   render() {
     return (
@@ -19,7 +19,7 @@ class CustomDocument extends Document implements CustomDocumentInterface {
         <Head lang="ja-JP">
           <meta name="charset" content="UTF-8" />
           <meta name="description" content={this.description} />
-          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+          <link rel="shortcut icon" href="/p1ass-lt-site/favicon.ico" type="image/x-icon" />
           {/* prevent browser to highlight numbers like phone numbers */}
           <meta name="format-detection" content="telephone=no" />
 
@@ -29,24 +29,15 @@ class CustomDocument extends Document implements CustomDocumentInterface {
           <meta property="og:title" content={this.title} />
           <meta property="og:site_name" content={this.title} />
           <meta property="og:description" content={this.description} />
-          <meta property="og:image" content={`${this.url}/images/ogp.png`} />
+          <meta property="og:image" content={`${this.url}/ogp.png`} />
 
           <meta name="twitter:title" content={this.title} />
           <meta name="twitter:description" content={this.description} />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:image" content={`${this.url}/images/ogp.png`} />
+          <meta name="twitter:image" content={`${this.url}/ogp.png`} />
 
-          {/* PWA settings  */}
-          <link rel="manifest" href="/manifest.json" />
-          <meta name="theme-color" content="#" />
-          <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/icon-72x72.png" />
-          <link rel="apple-touch-icon" sizes="96x96" href="/images/icons/icon-96x96.png" />
-          <link rel="apple-touch-icon" sizes="128x128" href="/images/icons/icon-128x128.png" />
-          <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/icon-144x144.png" />
-          <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/icon-152x152.png" />
-          <link rel="apple-touch-icon" sizes="192x192" href="/images/icons/icon-192x192.png" />
-          <link rel="apple-touch-icon" sizes="384x384" href="/images/icons/icon-384x384.png" />
-          <link rel="apple-touch-icon" sizes="512x512" href="/images/icons/icon-512x512.png" />
+          {/* PWA setting  */}
+          <link rel="manifest" href="/p1ass-lt-site/manifest.json" />
         </Head>
         <body>
           <Main />
