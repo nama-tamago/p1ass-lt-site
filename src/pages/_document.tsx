@@ -19,7 +19,7 @@ class CustomDocument extends Document implements CustomDocumentInterface {
         <Head lang="ja-JP">
           <meta name="charset" content="UTF-8" />
           <meta name="description" content={this.description} />
-          <link rel="shortcut icon" href="/p1ass-lt-site/favicon.ico" type="image/x-icon" />
+          <link rel="shortcut icon" href={`${process.env.basePath}/favicon.ico`} type="image/x-icon" />
           {/* prevent browser to highlight numbers like phone numbers */}
           <meta name="format-detection" content="telephone=no" />
 
@@ -37,7 +37,7 @@ class CustomDocument extends Document implements CustomDocumentInterface {
           <meta name="twitter:image" content={`${this.url}/ogp.png`} />
 
           {/* PWA setting  */}
-          <link rel="manifest" href="/p1ass-lt-site/manifest.json" />
+          <link rel="manifest" href={`${process.env.basePath}/manifest.json`} />
         </Head>
         <body>
           <Main />
