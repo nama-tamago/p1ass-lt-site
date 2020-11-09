@@ -6,3 +6,5 @@ declare namespace JSX {
         'meshLineMaterial': unknown
     }
 }
+
+declare module 'threejs-meshline'
