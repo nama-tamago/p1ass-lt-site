@@ -1,13 +1,13 @@
-import { Suspense, useMemo, useRef } from 'react';
-import Div100vh from 'react-div-100vh';
-import { Canvas, extend, useFrame, useLoader, useThree } from 'react-three-fiber';
-import { Footer, Header } from 'src/components';
+import { useMemo, useRef } from 'react';
+import { extend, useFrame, useLoader, useThree } from 'react-three-fiber';
 import * as THREE from 'three';
 import * as meshline from 'threejs-meshline';
 
 extend(meshline);
 
-function Fatline({ curve, width, color, speed }) {
+export const Fatline: React.FC<{
+  curve: THREE.Vector3[], width: number, color: string, speed: number
+}> = ({ curve, width, color, speed }) => {
   const material = useRef<{uniforms: {dashOffset: {value: number}}}>();
   useFrame(() => {
     if (material.current) material.current.uniforms.dashOffset.value -= speed;
@@ -27,9 +27,9 @@ function Fatline({ curve, width, color, speed }) {
       />
     </mesh>
   );
-}
+};
 
-function Lines({ count, colors }) {
+export const Lines: React.FC<{count:number, colors:string[]}> = ({ count, colors }) => {
   const lines = useMemo(
     () => new Array(count).fill(0).map(() => {
       const pos = new THREE.Vector3(
@@ -56,33 +56,30 @@ function Lines({ count, colors }) {
   );
   // eslint-disable-next-line react/no-array-index-key
   return <>{lines.map((props, idx) => <Fatline {...props} key={idx} />)}</>;
-}
+};
 
-const Rig = () => {
+export const Rig: React.FC<{xScale:number, yScale:number}> = ({ xScale, yScale }) => {
   const { camera, mouse } = useThree();
   const w = (typeof window !== 'undefined') ? window.innerWidth / 2 : 0;
   const h = (typeof window !== 'undefined') ? window.innerHeight / 2 : 0;
   useFrame(() => {
-    camera.position.x += ((w * mouse.x) / 100 - camera.position.x) * 0.5;
-    camera.position.y += ((h * -mouse.y) / 100 - camera.position.y) * 0.5;
+    camera.position.x += ((w * mouse.x) / xScale - camera.position.x) * 0.5;
+    camera.position.y += ((h * -mouse.y) / yScale - camera.position.y) * 0.5;
     camera.lookAt(0, 0, 0);
   });
   return <></>;
 };
 
-const P1assImage = () => {
-  const texture = useLoader(THREE.TextureLoader, `${process.env.basePath}/p1ass-image.png`);
-  return (
-    <mesh receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[44, 18]} />
-      <meshBasicMaterial attach="material" map={texture} transparent depthWrite={false} />
-    </mesh>
-  );
-};
+type Props = {
+  position?: THREE.Vector3 | [x: number, y: number, z: number],
+  width: number,
+  height: number,
+  scale?: number
+}
 
-const PeopleImage = ({ position, width, height, scale }) => {
+export const PeopleImage: React.FC<Props> = ({ position, width, height, scale = 1 }) => {
   const texture = useLoader(THREE.TextureLoader, `${process.env.basePath}/people.png`);
-  const ref = useRef<{position: {y: number}}>();
+  const ref = useRef<{position: THREE.Vector3}>();
   const { clock } = useThree();
   useFrame(() => {
     if (ref.current) {
@@ -97,74 +94,55 @@ const PeopleImage = ({ position, width, height, scale }) => {
   );
 };
 
-const DecorationImage = () => {
-  const texture = useLoader(THREE.TextureLoader, `${process.env.basePath}/decoration.png`);
+export const P1assImage: React.FC<Props> = ({ width, height }) => {
+  const texture = useLoader(THREE.TextureLoader, `${process.env.basePath}/p1ass-image.png`);
   return (
-    <mesh position={[0, 0, -2]} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[44, 18]} />
+    <mesh receiveShadow>
+      <planeBufferGeometry attach="geometry" args={[width, height]} />
       <meshBasicMaterial attach="material" map={texture} transparent depthWrite={false} />
     </mesh>
   );
 };
 
-const P1assLTTextImage = () => {
+export const DecorationImage: React.FC<Props> = ({ width, height }) => {
+  const texture = useLoader(THREE.TextureLoader, `${process.env.basePath}/decoration.png`);
+  return (
+    <mesh position={[0, 0, -2]} receiveShadow>
+      <planeBufferGeometry attach="geometry" args={[width, height]} />
+      <meshBasicMaterial attach="material" map={texture} transparent depthWrite={false} />
+    </mesh>
+  );
+};
+
+export const P1assLTTextImage: React.FC<Props> = ({ position, width, height }) => {
   const texture = useLoader(THREE.TextureLoader, `${process.env.basePath}/p1ass-lt-text.png`);
   return (
-    <sprite position={[0, 8, -3]} receiveShadow castShadow>
-      <planeBufferGeometry attach="geometry" args={[30, 10]} />
+    <sprite position={position} receiveShadow castShadow>
+      <planeBufferGeometry attach="geometry" args={[width, height]} />
       <spriteMaterial attach="material" map={texture} transparent depthWrite={false} />
     </sprite>
   );
 };
 
-const Plane = () => (
+export const Plane = () => (
   <mesh receiveShadow position={[0, 0, -15]}>
     <planeBufferGeometry attach="geometry" args={[1000, 1000]} />
     <meshStandardMaterial attach="material" color="#09090f" transparent depthWrite={false} />
   </mesh>
 );
 
-const Sphere = () => (
+export const Sphere = () => (
   <mesh position={[0, 20, -5]}>
     <sphereBufferGeometry attach="geometry" args={[3, 16, 16]} />
     <meshBasicMaterial attach="material" transparent color="#f5f3fb" />
   </mesh>
 );
 
-const Lights = () => (
+export const Lights: React.FC<{
+  position: THREE.Vector3 | [x: number, y: number, z: number], intensity: number,
+}> = ({ position, intensity }) => (
   <group>
     <pointLight position={[0, -10, 30]} intensity={1} />
-    <spotLight intensity={40} position={[0, 125, 70]} angle={0.2} penumbra={1} castShadow />
+    <spotLight intensity={intensity} position={position} angle={0.2} penumbra={1} castShadow />
   </group>
-);
-
-export const PCTop: React.FC = () => (
-  <Div100vh className="flex flex-col">
-    <main className="flex-grow w-full">
-      <Canvas
-        camera={{ position: [0, 0, 10] }}
-        colorManagement={false}
-        shadowMap
-      >
-        <Lights />
-        <Plane />
-        <Sphere />
-        <Lines count={200} colors={['#FEC283', '#ef476f', '#ffd166', '#caffbf', '#9bf6ff', '#ffc6ff']} />
-        <Suspense fallback={null}>
-          <P1assImage />
-          <DecorationImage />
-          <P1assLTTextImage />
-          <PeopleImage position={[0, -2.5, 1]} width={44} height={18} scale={1.5} />
-          <PeopleImage position={[-1, -2.5, 2]} width={44} height={18} scale={2.3} />
-          <PeopleImage position={[1, -3, 3]} width={44} height={18} scale={1.6} />
-          <PeopleImage position={[-1, -2.5, 4.5]} width={44} height={18} scale={2.7} />
-          <PeopleImage position={[1, -2.5, 7]} width={44} height={18} scale={1.4} />
-          <PeopleImage position={[0, -2.5, 9]} width={33} height={13.5} scale={1.9} />
-        </Suspense>
-        <Rig />
-      </Canvas>
-    </main>
-    <Header />
-    <Footer />
-  </Div100vh>
 );

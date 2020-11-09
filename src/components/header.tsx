@@ -3,7 +3,7 @@ import { ExternalLink } from 'src/components';
 
 export const Header: React.FC = () => (
   <header className="absolute top-0 text-white w-full h-12 lg:h-16 lg:px-4 pointer-events-none">
-    <nav className="flex pl-2 lg:px-0 h-full max-w-screen-xl mx-auto items-center justify-between">
+    <nav className="flex px-2 lg:px-4 h-full max-w-screen-xl mx-auto items-center justify-between">
       <ExternalLink className="pointer-events-auto" href="https://connpass.com/event/193445/">
         <h1 className="font-extrabold text-2xl lg:text-3xl font-sans">p1ass LT</h1>
       </ExternalLink>
