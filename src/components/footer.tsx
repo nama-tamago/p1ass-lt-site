@@ -8,10 +8,10 @@ export const Footer: React.FC = () => (
   >
     <div className="flex items-center leading-relaxed py-1 lg:py-0">
       ©2020
-      <ExternalLink className="underline hover:opacity-50 mx-1 pointer-events-auto" href="https://twitter.com/placeholder">
-        placeholder
+      <ExternalLink className="underline hover:opacity-50 mx-1 pointer-events-auto" href="https://twitter.com/p1ass">
+        p1ass
       </ExternalLink>
-      <ExternalLink className="underline hover:opacity-50 mr-1 pointer-events-auto" href="https://github.com/placeholder">
+      <ExternalLink className="underline hover:opacity-50 mr-1 pointer-events-auto" href="https://github.com/nama-tamago">
         <i>
           <FaGithub fontSize="18" />
         </i>
