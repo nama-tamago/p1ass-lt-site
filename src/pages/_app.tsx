@@ -1,9 +1,17 @@
-import '../styles/globals.css';
+import 'src/styles/global.scss';
+import 'src/styles/tailwind.css';
 
 import { AppProps } from 'next/app';
+import Head from 'next/head';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
-}
+const App = ({ Component, pageProps }: AppProps): JSX.Element => (
+  <>
+    <Head>
+      <title>p1ass LT</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" key="viewport" />
+    </Head>
+    <Component {...pageProps} />
+  </>
+);
 
-export default MyApp;
+export default App;

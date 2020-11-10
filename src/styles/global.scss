@@ -1,0 +1,16 @@
+html {
+  body {
+    overflow-x: hidden;
+
+    font-family: 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', Helvetica, Arial, 'Yu Gothic', sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Sans Emoji';
+
+    touch-action: none;
+    background-color: #090909;
+    -ms-scroll-chaining: none;
+    overscroll-behavior: none;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
